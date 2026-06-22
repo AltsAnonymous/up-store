@@ -25,6 +25,11 @@ interface TopChartsSliderProps {
 
 type ChartFilter = string;
 
+// Pseudo-category shown first and selected by default: ranks the whole catalog
+// by open count, i.e. the most-trending apps overall. Kept distinct from any
+// real category id in appCatalog.
+const ALL_FILTER_ID = "All";
+
 const PRIORITY_CATEGORIES = [
   "DeFi",
   "Staking",
@@ -41,7 +46,7 @@ export default function TopChartsSlider({
   onAppClick,
   trendingCounts,
 }: TopChartsSliderProps) {
-  const [activeFilter, setActiveFilter] = useState<ChartFilter>("DeFi");
+  const [activeFilter, setActiveFilter] = useState<ChartFilter>(ALL_FILTER_ID);
   const reduceMotion = useReducedMotion();
   const filterOptions = useMemo(() => {
     const counts = new Map<string, number>();
@@ -52,7 +57,7 @@ export default function TopChartsSlider({
       });
     });
 
-    return Object.values(appCategories)
+    const categoryOptions = Object.values(appCategories)
       .map((category) => ({
         id: category.id,
         label: category.displayName,
@@ -72,21 +77,30 @@ export default function TopChartsSlider({
 
         return a.label.localeCompare(b.label);
       });
+
+    // "All" leads the list and is the default tab — every app, ranked overall.
+    return [
+      { id: ALL_FILTER_ID, label: "All", count: apps.length },
+      ...categoryOptions,
+    ];
   }, [apps]);
 
   if (!apps || apps.length === 0) {
     return null;
   }
 
-  // The default filter ("DeFi") may not exist in the current catalog; fall back
-  // to the first available category so the table never opens on an empty tab.
+  // The active filter may not exist in the current catalog; fall back to the
+  // first available option ("All") so the table never opens on an empty tab.
   const effectiveFilter = filterOptions.some((filter) => filter.id === activeFilter)
     ? activeFilter
     : filterOptions[0]?.id ?? "";
 
-  // Rank most-opened first within the active category; ties keep incoming order.
+  // Rank most-opened first; ties keep incoming order. "All" ranks the whole
+  // catalog (most-trending overall), otherwise scope to the active category.
   const filteredApps = sortByOpenCount(
-    apps.filter((app) => app.categories.includes(effectiveFilter)),
+    effectiveFilter === ALL_FILTER_ID
+      ? apps
+      : apps.filter((app) => app.categories.includes(effectiveFilter)),
     trendingCounts ?? {}
   );
   const activeLabel =
