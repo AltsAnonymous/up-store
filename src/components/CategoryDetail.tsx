@@ -162,7 +162,7 @@ export default function CategoryDetail({ category, onBack, onAppClick }: Categor
                       ) : null}
                     </div>
 
-                    {/* Per-row action: Open primary; Add-to-Grid only when grid install available */}
+                    {/* Per-row action: Add to Grid is primary on every surface (direct LSP28 write in-grid, add-widget deep link elsewhere); Open is secondary. */}
                     <button
                       type="button"
                       onClick={(e) => {
@@ -221,7 +221,7 @@ export default function CategoryDetail({ category, onBack, onAppClick }: Categor
             </div>
             <button onClick={onBack} className="btn-ghost-outline mt-1" type="button">
               <ArrowLeft className="h-4 w-4" aria-hidden />
-              Back to store
+              Back to Search
             </button>
           </div>
         )}

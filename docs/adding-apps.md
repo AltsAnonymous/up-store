@@ -1,4 +1,4 @@
-# Adding apps to the LUKSO App Store catalog
+# Adding apps to the LUKSO UP!Store catalog
 
 Adding an app is **two steps**: drop in some images, add one JSON object.
 No TypeScript edits, no imports, no duplicated fields. An agent should be able to

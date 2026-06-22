@@ -65,6 +65,7 @@ The flow asks the user to connect their Universal Profile, choose a Grid, and ad
 - [Home / Discover](${siteUrl}/)
 - [Store directory](${siteUrl}/store)
 - [Search](${siteUrl}/search) — deep-linkable via \`?q=<term>\` and \`?category=<Category>\`
+- [Bookmarks](${siteUrl}/bookmarks) — saved apps, profiles, and links, stored on the user's Universal Profile (ERC725Y), not a database or browser storage; requires a connected Universal Profile
 
 ## Apps
 

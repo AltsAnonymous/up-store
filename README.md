@@ -20,6 +20,9 @@ Universal Everything add-widget flow outside the Grid as well.
   `universaleverything.io/add-widget` deep links.
 - Still supports direct LSP28 The Grid writes when running inside a connected
   Universal Profile Grid context.
+- Lets users bookmark apps, Universal Profiles and links. Bookmarks are stored on
+  the user's Universal Profile via ERC725Y (custom `UPStoreBookmarks` key, encoded
+  as a `VerifiableURI`) — not in a database or browser storage.
 - Tracks app opens with optional Upstash Redis storage and ranks Trending from
   those counts.
 - Exposes agent-friendly app data through `/api/apps` and `/llms.txt`.
@@ -54,6 +57,7 @@ naming rules and category list.
 | `/store` | Full searchable app directory |
 | `/store/<appId>` | Shareable app detail page with structured data |
 | `/search?q=<term>&category=<Category>` | Search and category deep links |
+| `/bookmarks` | The user's saved apps, profiles and links (stored on their Universal Profile) |
 | `/api/apps` | Machine-readable catalog JSON with absolute URLs and Add to Grid links |
 | `/api/track-open` | Best-effort open tracking endpoint |
 | `/api/trending` | Open-count data used by Trending |
@@ -111,7 +115,7 @@ See [docs/trending.md](docs/trending.md) for setup details.
 Create `.env` with the services you need.
 
 ```env
-# Required for direct in-Grid install metadata uploads through Pinata.
+# Required for direct LSP28 Grid metadata uploads through Pinata.
 PINATA_JWT=
 NEXT_PUBLIC_GATEWAY_URL=
 

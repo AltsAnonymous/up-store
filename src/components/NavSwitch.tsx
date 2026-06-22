@@ -38,7 +38,7 @@ export function NavSwitch({ active, onExplore }: NavSwitchProps) {
   const searchClasses = cn("lg-switch-item", !isExplore && "lg-switch-item-active");
 
   return (
-    <div className="lg-switch" role="group" aria-label="Store sections">
+    <div className="lg-switch" role="group" aria-label="Explore and Search">
       <motion.span
         aria-hidden="true"
         className="lg-switch-thumb"

@@ -211,7 +211,7 @@ export default function SearchPage({ onAppClick }: SearchPageProps) {
 
         <div className="mb-3 flex min-h-7 items-center justify-between gap-3 px-1">
           <p className="truncate text-[13px] font-medium text-text-secondary">
-            {activeCategory ? `${activeCategory.displayName} - ${resultLabel}` : resultLabel}
+            {activeCategory ? `${activeCategory.displayName} — ${resultLabel}` : resultLabel}
           </p>
           {selectedCategory !== "all" || searchTerm ? (
             <button

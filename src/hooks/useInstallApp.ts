@@ -56,7 +56,7 @@ export function useInstallApp() {
   const handleInstall = async (app: App, widget: AppWidget | null = null) => {
     // Check if user is connected
     if (!accounts || accounts.length === 0 || !upClient) {
-      toast("Connect your Universal Profile to install apps", {
+      toast("Connect your Universal Profile to add apps to your Grid", {
         duration: 3000,
         position: "bottom-center",
         style: {
@@ -71,7 +71,7 @@ export function useInstallApp() {
     if (blockIfGridNotLoaded()) return;
 
     if (checkIfInstalled(app, widget)) {
-      toast(`${targetName(app, widget)} is already installed`, {
+      toast(`${targetName(app, widget)} is already on your Grid`, {
         duration: 3000,
         position: "bottom-center",
         style: {
@@ -173,7 +173,7 @@ export function useInstallApp() {
       // Update UI immediately after transaction is submitted
       setSections(updatedSections);
 
-      toast(`${name} installed successfully`, {
+      toast(`${name} added to your Grid`, {
         duration: 3000,
         position: "bottom-center",
         style: {
@@ -201,7 +201,7 @@ export function useInstallApp() {
 
     } catch (error) {
       console.error("Error installing app:", error);
-      toast(`Failed to install ${name}`, {
+      toast(`Failed to add ${name} to your Grid`, {
         duration: 3000,
         position: "bottom-center",
         style: {
@@ -233,7 +233,7 @@ export function useInstallApp() {
   const handleUninstall = async (app: App) => {
     // Check if user is connected
     if (!accounts || accounts.length === 0 || !upClient) {
-      toast("Connect your Universal Profile to uninstall apps", {
+      toast("Connect your Universal Profile to remove apps from your Grid", {
         duration: 3000,
         position: "bottom-center",
         style: {
@@ -316,7 +316,7 @@ export function useInstallApp() {
       // Update UI immediately after transaction is submitted
       setSections(updatedSections);
 
-      toast(`${app.app.name} uninstalled successfully`, {
+      toast(`${app.app.name} removed from your Grid`, {
         duration: 3000,
         position: "bottom-center",
         style: {
@@ -344,7 +344,7 @@ export function useInstallApp() {
 
     } catch (error) {
       console.error("Error uninstalling app:", error);
-      toast(`Failed to uninstall ${app.app.name}`, {
+      toast(`Failed to remove ${app.app.name} from your Grid`, {
         duration: 3000,
         position: "bottom-center",
         style: {
