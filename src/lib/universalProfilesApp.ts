@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 
-import { absoluteUrl } from "@/lib/site";
-
 export type MetadataSearchParams = Record<
   string,
   string | string[] | undefined
 >;
 
 export const universalProfilesAppStoreId = "6702018631";
+export const universalProfilesAppLinkUrl = "https://apps.lukso.tools";
 
 export function pathWithSearchParams(
   pathname: string,
@@ -32,7 +31,9 @@ export function pathWithSearchParams(
 
 export function buildUniversalProfilesAppArgument(pathname: string): string {
   // The app association routes let iOS hand this HTTPS URL to the native app.
-  return absoluteUrl(pathname);
+  return `${universalProfilesAppLinkUrl}${
+    pathname.startsWith("/") ? "" : "/"
+  }${pathname}`;
 }
 
 export function buildUniversalProfilesItunesMeta(
