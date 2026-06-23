@@ -9,24 +9,24 @@ interface WordmarkProps {
 
 export function Wordmark({ className, size = "md" }: WordmarkProps) {
   const dimensions = {
-    sm: "h-7 w-[122px]",
-    md: "h-8 w-[140px] md:h-9 md:w-[157px]",
-    lg: "h-14 w-[244px] md:h-16 md:w-[279px]",
+    sm: "h-8 w-28",
+    md: "h-9 w-32 md:h-10 md:w-36",
+    lg: "h-20 w-64 md:h-24 md:w-80",
   }[size];
 
   return (
     <span
       className={cn("relative inline-flex shrink-0 select-none", dimensions, className)}
-      aria-label="LUKSO UP! Store"
+      aria-label="UP! Store"
     >
       <Image
         src="/brand/upstore-wordmark.webp"
-        alt="LUKSO UP! Store"
-        width={960}
-        height={220}
+        alt="UP! Store"
+        width={1024}
+        height={340}
         priority
         className="h-full w-full object-contain"
-        sizes={size === "lg" ? "279px" : "157px"}
+        sizes={size === "lg" ? "320px" : "144px"}
       />
     </span>
   );
