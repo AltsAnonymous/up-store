@@ -41,6 +41,7 @@ import { useAppLaunch } from "@/hooks/useAppLaunch";
 import { GET_UNIVERSAL_PROFILE } from "@/app/components/apollo/query";
 import GridSelectionDialog from "./GridSelectionDialog";
 import BookmarkButton from "@/components/BookmarkButton";
+import ShareAppButton from "@/components/ShareAppButton";
 import { buildAppBookmark, buildProfileBookmark } from "@/lib/bookmarks";
 
 // Helper function to convert IPFS URL to HTTP URL
@@ -304,6 +305,7 @@ export default function AppDetailPage({ app, onBack }: AppDetailPageProps) {
               <ChevronLeft className="h-5 w-5" aria-hidden />
               <span className="hidden sm:inline">Back</span>
             </button>
+            <ShareAppButton app={app} />
             <Link
               href="/bookmarks"
               aria-label="Bookmarks"
